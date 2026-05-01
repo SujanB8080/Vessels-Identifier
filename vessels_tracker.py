@@ -33,13 +33,13 @@ def strct_data(res):
 
 def table(df):
     try:
-        # df.to_csv("vessel_info.csv", index=False)
-        # file = "vessel_info.csv"
-        # data =[]
-        # with open(file, "r") as f:
-        #     reader = csv.DictReader(f)
-        #     for row in reader:
-        #         data.append(row)
+        df.to_csv("vessel_info.csv", index=False)
+        file = "vessel_info.csv"
+        data =[]
+        with open(file, "a") as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                data.append(row)
         return (tabulate(df, headers="keys", tablefmt="simple"))
 
     except AttributeError:

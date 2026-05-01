@@ -1,5 +1,4 @@
 # VESSELS Identifier
-#### Video Demo:  https://youtu.be/ZVNKKstu0DQ
 #### Description: This project will give the information of "Active/Decommissioned" vessel's details by searching it's name.
 
 Vessels are the biggest life line for humans they are transporting large containers of goods, crude oils, petrolium products, and even people from one country to the other or may be one continent to the other.
@@ -32,7 +31,6 @@ Supply chain visibility</br>
 
 * **tabulate** : a lightweight Python package used to pretty-print tabular data in a human-readable format within terminals or text-based reports. It has only one function `tabulate`
 
-* **unittest** : Python's built-in framework for writing and running automated tests. `unittest.mock` has `patch()` method which can be used to mock the requests to the API without actually making a request.
 
 ## Implementation
 
