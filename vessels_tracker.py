@@ -9,7 +9,7 @@ def get_vessel_info(name):
         response = requests.get(
             "https://api.vesselapi.com/v1/search/vessels",
             params={"filter.name":name},
-            headers={"Authorization": "Bearer ab2874fbb8f4a35c67219bacc5907e079a2fe04ff00ef34d2fee46ddedfc8379"}
+            headers={"Authorization": }
         )
     except requests.RequestException:
         print("An error occurred while making the API request.")

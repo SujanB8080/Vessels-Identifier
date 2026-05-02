@@ -9,14 +9,14 @@ There may be Oil Tankers, General Cargo Ships, LPG/LNG Tankers, Chemical Tankers
 I have created a project which will fetch you the details of the vessels like what country the vessel belongs, it's imo and mmsi number, is it active or decommisioned, what type it is , who is the owner/ manager.</br>
 
 ## vesselAPI
-I have used the <ins>[vesselAPI](https://github.com/vessel-api/VesselApi)</ins> which provides real time AIS(Automatic Identification System) and maritime data about the vessels in the maritime waters. Instead of integrating multiple data sources and maintaining complex scraping infrastructure, we get a single API endpoint with normalized, reliable data.
+I have used the [vesselAPI](https://github.com/vessel-api/VesselApi) which provides real time AIS(Automatic Identification System) and maritime data about the vessels in the maritime waters. Instead of integrating multiple data sources and maintaining complex scraping infrastructure, we get a single API endpoint with normalized, reliable data.
 
 It is built for
-Maritime research and analytics,
-Trade flow analysis,
-Fleet monitoring and tracking,
-Port operations intelligence
-Supply chain visibility</br>
+maritime research and analytics,
+trade flow analysis,
+fleet monitoring and tracking,
+port operations intelligence
+supply chain visibility</br>
 
 ***base URL*** : ```https://api.vesselapi.com/v1/search/vessels```</br>
 **filter by name** : `filter.name` <br/>
@@ -40,6 +40,6 @@ The user is asked to enter the "name" of a vessel then this will be passed to th
 
 The JSON response will have too many fields , but I have made a column list which will only fetch the required field from the data. the desired data will be converted into the DataFrame using pandas and this will be returned to the table function.
 
-finally the data will be showed to the user which will have the details of vessel/s which matched the name user has had entered.
+Finally the data will be showed to the user which will have the details of vessel/s of matched name the user has had entered.
 
 
