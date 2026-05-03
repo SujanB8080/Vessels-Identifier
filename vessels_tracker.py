@@ -17,6 +17,7 @@ COLUMNS = [
     "country",
     "country_code",
     "operating_status",
+    "year_built",
     "owner_name",
 ]
 
