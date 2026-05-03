@@ -1,55 +1,107 @@
+import os
 import requests
 import pandas as pd
-import csv
 from tabulate import tabulate
+from dotenv import load_dotenv
+
+load_dotenv()
+API_KEY = os.getenv("VESSEL_API_KEY")
+
+BASE_URL = "https://api.vesselapi.com/v1/search/vessels"
+
+COLUMNS = [
+    "name",
+    "imo",
+    "mmsi",
+    "vessel_type",
+    "country",
+    "country_code",
+    "operating_status",
+    "owner_name",
+]
 
 
-def get_vessel_info(name):
+def get_vessel_info(name: str) -> dict | None:
+    """Fetch vessel data from the vesselAPI by vessel name.
+    Returns the JSON response dict, or None on failure.
+    """
+    if not API_KEY:
+        print("Error: VESSEL_API_KEY not found.")
+        return None
+
     try:
         response = requests.get(
-            "https://api.vesselapi.com/v1/search/vessels",
-            params={"filter.name":name},
-            headers={"Authorization": }
+            BASE_URL,
+            params={"filter.name": name},
+            headers={"Authorization": API_KEY},
+            timeout=10,
         )
-    except requests.RequestException:
-        print("An error occurred while making the API request.")
+        response.raise_for_status()
+        return response.json()
+
+    except requests.exceptions.ConnectionError:
+        print("Error: Could not connect. Check your internet connection.")
+    except requests.exceptions.Timeout:
+        print("Error: Request timed out. Try again.")
+    except requests.exceptions.HTTPError as e:
+        print(f"HTTP error: {e.response.status_code} - {e.response.reason}")
+    except requests.exceptions.RequestException as e:
+        print(f"Unexpected request error: {e}")
+
+    return None
+
+
+def structure_data(response: dict) -> pd.DataFrame | None:
+    """Extract relevant fields from the API response into a DataFrame."""
+    if response is None:
         return None
 
-    return response.json()
-
-
-def strct_data(res):
-
     try:
-        vessels_info = res
-        info = vessels_info["vessels"]
-        Columns = ["name", "imo","mmsi","vessel_type","country","country_code","operating_status","owner_name"]
-        df = pd.DataFrame(info, columns = Columns)
-        return df
+        vessels = response.get("vessels", [])
+        if not vessels:
+            print("No vessels found for that name.")
+            return None
 
-    except KeyError:
-        print("Couldn't read response")
+        rows = []
+        for vessel in vessels:
+            row = {col: vessel.get(col, "N/A") for col in COLUMNS}
+            rows.append(row)
 
+        return pd.DataFrame(rows, columns=COLUMNS)
 
-def table(df):
-    try:
-        df.to_csv("vessel_info.csv", index=False)
-        file = "vessel_info.csv"
-        data =[]
-        with open(file, "a") as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                data.append(row)
-        return (tabulate(df, headers="keys", tablefmt="simple"))
-
-    except AttributeError:
+    except (KeyError, TypeError) as e:
+        print(f"Error reading API response: {e}")
         return None
+
+
+def display_table(df: pd.DataFrame) -> str | None:
+    """print the DataFrame as a table and save it to CSV."""
+    if df is None:
+        return None
+
+    output_file = "vessel_info.csv"
+    df.to_csv(output_file, index=False)
+
+    return tabulate(df, headers="keys", tablefmt="simple", showindex=False)
+
 
 def main():
-    vessel_name = input("Enter the name of the ship: ")
-    vessel_data = get_vessel_info(vessel_name)
-    structured_data = strct_data(vessel_data)
-    print(table(structured_data))
+    vessel_name = input("Enter the name of the ship: ").strip()
+
+    if not vessel_name:
+        print("No name entered. Exiting.")
+        return
+
+    print(f"\nSearching for '{vessel_name}'...\n")
+
+    raw_data = get_vessel_info(vessel_name)
+    df = structure_data(raw_data)
+    result = display_table(df)
+
+    if result:
+        print(result)
+    else:
+        print("No data to display.")
 
 
 if __name__ == "__main__":

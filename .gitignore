@@ -1,0 +1,19 @@
+# Environment variables — never commit this
+.env
+
+# Generated output files
+*.csv
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# IDE files
+.vscode/
