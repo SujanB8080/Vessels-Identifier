@@ -78,9 +78,10 @@ def display_table(df: pd.DataFrame) -> str | None:
     """print the DataFrame as a table and save it to CSV."""
     if df is None:
         return None
-
+    file_exists = os.path.isfile("vessel_info.csv")
     output_file = "vessel_info.csv"
-    df.to_csv(output_file, index=False)
+    df.to_csv(output_file, index = False, mode = 'a', header = not file_exists)
+    print(f"Data saved to {output_file}")
 
     return tabulate(df, headers="keys", tablefmt="simple", showindex=False)
 
