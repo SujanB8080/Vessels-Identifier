@@ -42,4 +42,5 @@ The JSON response will have too many fields , but I have made a column list whic
 
 Finally the data will be showed to the user which will have the details of vessel/s of matched name the user has had entered.
 
+The result data will be appended to the `vessel_info.csv` every time the script runs.
 
