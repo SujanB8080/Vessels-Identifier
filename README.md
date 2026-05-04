@@ -49,7 +49,7 @@ The result data will be appended to the `vessel_info.csv` every time the script 
 vessel data will inclued name, imo(international maritime org) number, mmsi(maritime mobile service identity), type of vessel, country the vessel belongs, country code, operating status of vessel, year the vessel was build, owner/manager of the vessel(which company).
 
 #### Data Table
- ![vessel data example](vessel_tracker\assets\vessel_data.png)
+ ![vessel data example](C:/Data_Science/Vessels%20Tracker/assets/vessel_data.png)
 
 ####  No vessel found
  ![If no match found](assets\unsuccessful.png)
