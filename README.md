@@ -44,3 +44,15 @@ Finally the data will be showed to the user which will have the details of vesse
 
 The result data will be appended to the `vessel_info.csv` every time the script runs.
 
+## What data return?
+
+vessel data will inclued name, imo(international maritime org) number, mmsi(maritime mobile service identity), type of vessel, country the vessel belongs, country code, operating status of vessel, year the vessel was build, owner/manager of the vessel(which company).
+
+#### Data Table
+ ![vessel data example](assets\vessel_data.png)
+
+####  No vessel found
+ ![If no match found](assets\unsuccessful.png)
+
+#### No internet
+ ![If there is no internet connection](assets\internet_error.png) 
