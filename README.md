@@ -49,7 +49,7 @@ The result data will be appended to the `vessel_info.csv` every time the script 
 vessel data will inclued name, imo(international maritime org) number, mmsi(maritime mobile service identity), type of vessel, country the vessel belongs, country code, operating status of vessel, year the vessel was build, owner/manager of the vessel(which company).
 
 #### Data Table
- <img src="https://github.com/SujanB8080/Vessels-Identifier/blob/main/assets/vessel_data.png?raw=true" alt="Vessel data" width="400"></img>
+ <img src="https://github.com/SujanB8080/Vessels-Identifier/blob/main/assets/vessel_data.png?raw=true" alt="Vessel data" width="11111"></img>
 
 ####  No vessel found
  <img src="https://github.com/SujanB8080/Vessels-Identifier/blob/main/assets/unsuccessful.png?raw=true" alt="Vessel data" width="400"></img>
